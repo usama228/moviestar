@@ -1,13 +1,29 @@
- import { colorTokens } from "@tamagui/themes";
+ import { DrawerToggleButton } from "@react-navigation/drawer";
+
 import { Stack } from "expo-router";
+import { useTheme } from "tamagui";
  const Layout = () => { 
+   const theme = useTheme();
     return <Stack
     screenOptions={{
       headerStyle:{
-         backgroundColor: colorTokens.dark.blue.blue7,
+         backgroundColor: theme.blue7.get(),
       },
       headerTintColor: '#fff',
-    }}></Stack>;
+    }}>
+      <Stack.Screen 
+      name="index"
+      options={{
+         title: 'Moviestar',
+         headerLeft: () => <DrawerToggleButton tintColor="#fff"/>,      }}
+      />
+      <Stack.Screen 
+      name="movie/[id]"
+      options={{
+         title: '',
+            }}
+      />
+    </Stack>
     
  };
  export default Layout;
