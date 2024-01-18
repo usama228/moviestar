@@ -7,7 +7,7 @@ import { TamaguiProvider, Button, Text, Theme } from 'tamagui';
 import config from '../tamagui.config';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@/queryClient';
+import { queryClient } from '../queryClient';
 
 SplashScreen.preventAutoHideAsync();
 
