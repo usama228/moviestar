@@ -5,6 +5,26 @@ export interface TrendingResult {
   total_results: number;
 }
 
+export interface MediaResult {
+  page: number;
+  results: ResultItem[];
+  total_pages: number;
+  total_results: number;
+}
+export interface Video {
+  id:string;
+  key: string;
+  name: string;
+  type: string;
+ 
+}
+
+export interface RootObject {
+  success: boolean;
+  status_code: number;
+  status_message: string;
+}
+
 export interface ResultItem {
   adult: boolean;
   backdrop_path: string;
@@ -25,6 +45,9 @@ export interface ResultItem {
   original_name?: string;
   first_air_date?: string;
   origin_country?: string[];
+  videos?: MovieVideoResult;
+  
+  
 }
 
 export enum MediaType {
@@ -41,4 +64,14 @@ export interface Cast {
   name: string;
   character: string;
   profile_path: string | null;
+}
+
+export interface MovieVideo {
+  id: string;
+  name: string;
+  key: string;
+}
+
+export interface MovieVideoResult extends RootObject {
+  results?: MovieVideo[];
 }

@@ -1,8 +1,8 @@
-import { Feather } from '@expo/vector-icons';
+
 import { useFonts } from 'expo-font';
-import { Stack, useRouter, SplashScreen, Slot } from 'expo-router';
+import { SplashScreen, Slot } from 'expo-router';
 import React, { useEffect } from 'react';
-import { TamaguiProvider, Button, Text, Theme } from 'tamagui';
+import { TamaguiProvider,  Theme } from 'tamagui';
 
 import config from '../tamagui.config';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

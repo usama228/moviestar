@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from "react";
-import { View, ImageBackground, TouchableOpacity, Modal } from "react-native";
+import {  ImageBackground, TouchableOpacity, Modal, View} from "react-native";
 import Animated from "react-native-reanimated";
-import { H1, Image, ScrollView, YStack, Text, Paragraph, Button, useTheme } from "tamagui";
+import { H1, Image, ScrollView, YStack, Paragraph, Button, useTheme, Text} from "tamagui";
 import { useMMKVBoolean } from "react-native-mmkv";
 import { useMMKVObject } from "react-native-mmkv";
 import { Favorite } from "@/interfaces/favorites";
@@ -15,8 +14,6 @@ import { Main } from '../tamagui.config';
 import { LineChart } from 'react-native-chart-kit';
 
 
-
-
 type DetailsPageProps = {
   id: string;
   mediaType: MediaType;
@@ -27,8 +24,7 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
   const [favorites, setFavorites] = useMMKVObject<Favorite[]>('favorites');
   const theme = useTheme();
 
-
-  const movieQuery = useQuery({
+const movieQuery = useQuery({
     queryKey: ['movie', id],
     queryFn: () => getMovieDetails(+id, mediaType),
   });
@@ -74,10 +70,8 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
     setIsStatsModalVisible(false);
   };
 
-  const scoreHistory = [80, 85, 90, 87, 92, 88, 95]; // Replace this with your actual score history data
-
-  
-  return (
+  const scoreHistory = [80, 85, 90, 87, 92, 88, 95]; 
+ return (
     <Main>
       <Stack.Screen
         options={{
@@ -113,11 +107,8 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
             style={{ width: 200, height: 300, margin: 10 }}
             sharedTransitionTag={`${mediaType === 'movie' ? 'movie' : 'tv'}-${id}`}
           />
-
-          
-        </ImageBackground>
-
-        <YStack
+ </ImageBackground>
+<YStack
           p={10}
           animation={'lazy'}
           enterStyle={{
@@ -156,41 +147,33 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
               </ScrollView>
             )}
           </View>
-
-          {/* Ratings and Stats */}
-          <TouchableOpacity onPress={openStats}>
+ <TouchableOpacity onPress={openStats}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
               <Text fontSize={18} fontWeight="bold">
-                Ratings: {movieQuery.data?.vote_average * 10}% {/* Assuming vote_average is in a scale of 0-10 */}
+                Ratings: {movieQuery.data?.vote_average * 10}% 
               </Text>
               <Ionicons name="information-circle" size={24} color={theme.blue7.get()} style={{ marginLeft: 5 }} />
             </View>
           </TouchableOpacity>
-
-       
-         
- 
-
-          {/* Stats Modal */}
-          {isStatsModalVisible && (
+{isStatsModalVisible && (
             <Modal animationType="slide" transparent={true} visible={isStatsModalVisible}>
               <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ padding: 20, backgroundColor: 'white', borderRadius: 10, elevation: 5 }}>
                   <Text fontSize={20} fontWeight="bold" style={{ marginBottom: 10 }}>
                     Movie Stats
                   </Text>
-                  {/* Chart for Score Distribution */}
+                 
                   <View style={{ marginBottom: 20 }}>
                     <Text fontSize={16} fontWeight="bold" style={{ marginBottom: 10 }}>
                       Score Distribution
                     </Text>
                     <LineChart
                       data={{
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',], // Replace with your labels
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',], 
                         datasets: [
                           {
                             data: scoreHistory,
-                            color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // Change color as needed
+                            color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, 
                           },
                         ],
                       }}
@@ -200,7 +183,7 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
                         backgroundGradientFrom: '#fff',
                         backgroundGradientTo: '#fff',
                         decimalPlaces: 0,
-                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // Label color
+                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, 
                         style: {
                           borderRadius: 16,
                         },
@@ -208,7 +191,6 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
                       bezier
                     />
                   </View>
-                  {/* Additional stats go here */}
                   <Button onPress={closeStatsModal} animation="bouncy">
                     Close
                   </Button>
